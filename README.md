@@ -1,6 +1,32 @@
-# AgentMesh
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.png">
+    <img src="docs/images/logo-light.png" alt="AgentMesh logo" width="140">
+  </picture>
+</p>
 
-A local coordination layer for several AI coding agents working on one codebase.
+<h1 align="center">AgentMesh</h1>
+
+<p align="center">
+  A local coordination layer for several AI coding agents working on one codebase.
+</p>
+
+<p align="center">
+  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue">
+  <img alt="Python 3.12+" src="https://img.shields.io/badge/python-3.12%2B-3776AB">
+  <img alt="Platform: Windows" src="https://img.shields.io/badge/platform-Windows-0078D4">
+  <img alt="Version 0.5.6" src="https://img.shields.io/badge/version-0.5.6-lightgrey">
+  <img alt="96 tests" src="https://img.shields.io/badge/tests-96-brightgreen">
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/demo-dark.gif">
+    <img src="docs/images/demo-light.gif" alt="A leader assigns two tasks, two workers build them in their own Git worktrees, the agents review each other's work, and the branches merge into main." width="800">
+  </picture>
+</p>
+
+<p align="center"><sub>A leader plans, workers build in separate Git worktrees, a different agent reviews each commit, and the branches merge.</sub></p>
 
 You run a leader, a few workers, a reviewer and an integrator as separate agent sessions (Claude Code, Codex, Gemini, anything that can run a shell command). They don't talk to each other directly. They all talk to one CLI, which keeps the state in a local SQLite database and makes sure the rules hold:
 
