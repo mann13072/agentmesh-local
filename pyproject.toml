@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentmesh-local"
+version = "0.5.6"
+requires-python = ">=3.12"
+license = "MIT"
+description = "Local-first coordination CLI for multiple AI coding agents"
+readme = "README.md"
+
+[project.scripts]
+agentmesh = "agentmesh.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+agentmesh = ["schema.sql", "schema_v2.sql"]

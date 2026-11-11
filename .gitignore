@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.egg-info/
+build/
+projects/
+runtime/
+backups/
+worktrees/
+workspaces/
+repositories/
+Work/
+vault/00-Dashboard/
+vault/01-Projects/
+vault/02-Agents/
+vault/03-Inbox/

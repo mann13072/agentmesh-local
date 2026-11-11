@@ -1,0 +1,11 @@
+CREATE TABLE appointments(code_hash TEXT PRIMARY KEY,project_id TEXT NOT NULL REFERENCES projects(id),role TEXT NOT NULL CHECK(role IN ('leader','reviewer','integrator','worker')),created_at TEXT NOT NULL,expires_at TEXT NOT NULL,redeemed_by TEXT REFERENCES sessions(id),redeemed_at TEXT);
+CREATE TABLE project_git(project_id TEXT PRIMARY KEY REFERENCES projects(id),repository TEXT NOT NULL,base_branch TEXT NOT NULL,set_at TEXT NOT NULL);
+CREATE TABLE attempt_git(attempt_id TEXT PRIMARY KEY REFERENCES attempts(id),start_ref TEXT NOT NULL,base_sha TEXT,head_sha TEXT,submitted_at TEXT);
+CREATE TABLE integrations(task_id TEXT PRIMARY KEY REFERENCES tasks(id),attempt_id TEXT NOT NULL REFERENCES attempts(id),head_sha TEXT,merge_sha TEXT,destination TEXT NOT NULL,evidence TEXT,session_id TEXT REFERENCES sessions(id),at TEXT NOT NULL);
+CREATE TABLE session_hosts(session_id TEXT PRIMARY KEY REFERENCES sessions(id),name TEXT NOT NULL,pid INTEGER NOT NULL,started TEXT NOT NULL,seen_at TEXT NOT NULL);
+CREATE TABLE messages(id TEXT PRIMARY KEY,project_id TEXT NOT NULL REFERENCES projects(id),from_session_id TEXT REFERENCES sessions(id),to_session_id TEXT REFERENCES sessions(id),to_role TEXT,task_id TEXT REFERENCES tasks(id),body TEXT NOT NULL,created_at TEXT NOT NULL,read_at TEXT);
+CREATE TABLE project_flags(project_id TEXT NOT NULL REFERENCES projects(id),name TEXT NOT NULL,value TEXT NOT NULL,set_at TEXT NOT NULL,PRIMARY KEY(project_id,name));
+CREATE INDEX events_project_action ON events(project_id,action,seq);
+CREATE INDEX tasks_project_state ON tasks(project_id,state,priority);
+CREATE INDEX attempts_session_state ON attempts(session_id,state);
+CREATE INDEX messages_to ON messages(project_id,to_session_id,read_at);
